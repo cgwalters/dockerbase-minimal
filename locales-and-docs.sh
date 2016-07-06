@@ -21,3 +21,7 @@ find /usr/share/doc/ -type f |
    done)
 rm /usr/share/doc/{info,man} -rf
 				    
+
+# Pruning random things
+rm /usr/lib/rpm/rpm.daily   # seriously?
+rm /usr/lib64/nss/unsupported-tools/ -rf  # unsupported
