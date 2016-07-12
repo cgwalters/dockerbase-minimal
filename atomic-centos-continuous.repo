@@ -1,0 +1,5 @@
+[atomic-centos-continuous]
+baseurl=https://ci.centos.org/artifacts/sig-atomic/rdgo/centos-continuous/build
+#baseurl=file:///srv/walters/build-cahc/build
+gpgcheck=0
+priority=1
