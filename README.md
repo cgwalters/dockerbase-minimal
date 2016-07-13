@@ -5,6 +5,15 @@ are statically compiling native code (Go, Rust) or minimal C/C++
 servers (nginx, redis) that don't tend to have big dependencies and
 don't need translation infrastructure, etc.
 
+Trying it
+---------
+
+See our [CentOS CI job](https://ci.centos.org/job/atomic-dockerimage-centosmin/).
+
+```
+curl https://ci.centos.org/job/atomic-dockerimage-centosmin/lastSuccessfulBuild/artifact/centosmin.tar.gz | docker import - cgwalters/centosmin
+```
+
 Implementation and size
 -----------------------
 
