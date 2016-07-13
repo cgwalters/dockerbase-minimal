@@ -10,15 +10,16 @@ function cleanup () {
     fi
     fi
 }
-trap cleanup EXIT
 
-yum -y --setopt=cachedir=$(pwd)/cache --setopt=tsflags=nodocs --setopt=override_install_langs=en \
+yum -y --setopt=cachedir=$(pwd)/cache --setopt=keepcache=1 --setopt=tsflags=nodocs --setopt=override_install_langs=en \
      --setopt=reposdir=$(pwd) --releasever=7 --installroot=${tempdir}/root install \
      micro-yuminst centos-release
+
 root=${tempdir}/root
-install -m 0755 locales-and-docs.sh ${root}/tmp
-chroot ${root} /tmp/locales-and-docs.sh
-(cd ${root} &&
- rm -rf etc/machine-id var/cache/* run/* tmp/*)
-rm -f centosmin.tar
-tar -f centosmin.tar -C ${root} -c .
+# We need to run this in target context in the general case
+install -m 0755 locales.sh ${root}/tmp
+chroot ${root} /tmp/locales.sh
+./postprocess.sh ${root}
+
+rm -f centosmin.tar.gz
+tar --numeric-owner -zf centosmin.tar.gz -C ${root} -c .
