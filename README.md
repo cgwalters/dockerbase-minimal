@@ -18,7 +18,7 @@ Implementation and size
 -----------------------
 
 Right now we're at 77MB.  Compared to the main base image, there are
-only two packages we include directly: `centos-release` and [micro-yuminst](https://gitlab.com/cgwalters/micro-yuminst).
+only two packages we include directly: `centos-release` and [micro-yuminst](https://github.com/cgwalters/micro-yuminst).
 which is a trivial implementation of `yum -y install` in C.  Hence
 this image doesn't include Python.
 
