@@ -17,7 +17,7 @@ curl https://ci.centos.org/job/atomic-dockerimage-centosmin/lastSuccessfulBuild/
 Implementation and size
 -----------------------
 
-Right now we're at 77MB.  Compared to the main base image, there are
+Right now we're at 27MB compressed, 77MB uncompressed.  Compared to the main base image, there are
 only two packages we include directly: `centos-release` and [micro-yuminst](https://github.com/cgwalters/micro-yuminst).
 which is a trivial implementation of `yum -y install` in C.  Hence
 this image doesn't include Python.
