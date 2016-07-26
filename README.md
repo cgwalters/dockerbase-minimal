@@ -22,12 +22,21 @@ only two packages we include directly: `centos-release` and [micro-yuminst](http
 which is a trivial implementation of `yum -y install` in C.  Hence
 this image doesn't include Python.
 
-Everything else gets pulled in indirectly mostly via chains like:
-  libhif -> libcurl -> libssh2 
-         -> glib2 -> shared-mime-info
+Primary minimization targets:
 
-Approaching ~60MB by carefully pruning unused binaries and
-documentation is likely possible.  After that, things get harder -
-we'd likely need to e.g. have a separate libcurl build that only did
-http and didn't drag in `libssh2` for example.
+## libcurl dependencies
 
+Build libcurl without libssh, ldap, etc. (EASY)
+
+### RPM -> lua -> ncurses -> (libstdc++...)
+
+We should be able to break the `lua` :arrow_right: `ncurses`
+dependency.  I found https://github.com/luaposix/luaposix/pull/241
+
+### Switch everything to openssl
+
+So we can drop nss.
+
+### Others
+
+glib2 -> shared-mime-info
