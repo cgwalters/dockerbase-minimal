@@ -30,12 +30,12 @@ Build libcurl without libssh, ldap, etc. (EASY)
 
 ### RPM -> lua -> ncurses -> (libstdc++...)
 
-We should be able to break the `lua` :arrow_right: `ncurses`
-dependency.  I found https://github.com/luaposix/luaposix/pull/241
+https://bugzilla.redhat.com/show_bug.cgi?id=1360404
 
 ### Switch everything to openssl
 
-So we can drop nss.
+So we can drop nss.  I noticed at least OpenSUSE at least avoids
+the glibc :arrow_right: nss dependency.
 
 ### Others
 
