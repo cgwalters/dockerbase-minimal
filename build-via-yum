@@ -48,7 +48,7 @@ try:
     run_sync(['chroot', root, '/tmp/locales.sh'])
     run_sync(['./postprocess.sh', root])
 
-    tarname = '{}.tar.gz'.format(imgname)
+    tarname = '{}-{}.tar.gz'.format(imgname, args.releasever)
     try:
         os.unlink(tarname)
     except:
