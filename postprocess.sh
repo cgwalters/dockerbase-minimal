@@ -16,6 +16,7 @@ find usr/share/doc/ -type f |
    done)
 
 rm usr/share/doc/{info,man} -rf
+rm usr/share/gnupg/help*.txt -f
 
 # See: https://bugzilla.redhat.com/show_bug.cgi?id=1051816
 KEEPLANG=en_US
@@ -26,6 +27,13 @@ done
 # Pruning random things
 rm usr/lib/rpm/rpm.daily   # seriously?
 rm usr/lib64/nss/unsupported-tools/ -rf  # unsupported
+
+# gcc should really split this off
+rm usr/share/gcc*/python -rf
+
+# Statically linked crap
+rm usr/sbin/{glibc_post_upgrade.x86_64,sln}
+ln usr/bin/ln usr/sbin/sln
 
 # Final pruning
 rm -rf etc/machine-id var/cache/* var/log/* run/* tmp/*
