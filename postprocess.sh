@@ -28,4 +28,4 @@ rm usr/lib/rpm/rpm.daily   # seriously?
 rm usr/lib64/nss/unsupported-tools/ -rf  # unsupported
 
 # Final pruning
-rm -rf etc/machine-id var/cache/* run/* tmp/*
+rm -rf etc/machine-id var/cache/* var/log/* run/* tmp/*
