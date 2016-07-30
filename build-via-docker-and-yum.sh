@@ -1,7 +1,7 @@
 #!/bin/bash
 target=${1:-centos}
 releasever=${2:-}
-if test -n ${releasever}; then
+if test -z ${releasever}; then
     case $target in
 	centos)
 	    releasever=7 ;;
