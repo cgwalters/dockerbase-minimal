@@ -32,6 +32,10 @@ Build libcurl without libssh, ldap, etc. (EASY)
 
 https://bugzilla.redhat.com/show_bug.cgi?id=1360404
 
+### GNUPG minimization
+
+https://bugzilla.redhat.com/show_bug.cgi?id=1361869
+
 ### Switch everything to openssl
 
 So we can drop nss.  I noticed at least OpenSUSE at least avoids
