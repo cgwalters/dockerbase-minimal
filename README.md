@@ -1,26 +1,37 @@
-# centosmin
+# dockerbase-minimal
 
-An alternative base Docker image, targeted particularly for people who
-are statically compiling native code (Go, Rust) or minimal C/C++
-servers (nginx, redis) that don't tend to have big dependencies and
-don't need translation infrastructure, etc.
+An alternative base Docker image (with CentOS7 and Fedora 24
+versions), targeted particularly for people who are statically
+compiling native code (Go, Rust) or minimal C/C++ servers (nginx,
+redis) that don't tend to have big dependencies and don't need
+translation infrastructure, etc.
+
+There are only two packages to start:
+[micro-yuminst](https://github.com/cgwalters/micro-yuminst) and the
+`$distro-release` package for `/etc/yum.repos.d/` definitions -
+everything else comes via dependencies.
 
 Trying it
 ---------
 
-See our [CentOS CI job](https://ci.centos.org/job/atomic-dockerimage-centosmin/).
+See our CentOS CI jobs:
+
+ - [Fedora](https://ci.centos.org/view/Atomic/job/atomic-dockerimage-fedora-24/)
+ - [CentOS](https://ci.centos.org/view/Atomic/job/atomic-dockerimage-centos-7/)
+
+Currently, uploads to the Docker Hub are manual, under the tags
+`cgwalters/fedoramin` and `cgwalters/centosmin`.  You can also download the
+tarballs directly from the Jenkins Jobs via:
 
 ```
-curl https://ci.centos.org/job/atomic-dockerimage-centosmin/lastSuccessfulBuild/artifact/centosmin.tar.gz | docker import - cgwalters/centosmin
+curl https://ci.centos.org/job/atomic-dockerimage-fedora-24/lastSuccessfulBuild/artifact/fedoramin-24.tar.gz | docker import - cgwalters/fedoramin:24
+curl https://ci.centos.org/job/atomic-dockerimage-centos-7/lastSuccessfulBuild/artifact/centosmin-7.tar.gz | docker import - cgwalters/centosmin:7
 ```
 
 Implementation and size
 -----------------------
 
-Right now we're at 27MB compressed, 77MB uncompressed.  Compared to the main base image, there are
-only two packages we include directly: `centos-release` and [micro-yuminst](https://github.com/cgwalters/micro-yuminst).
-which is a trivial implementation of `yum -y install` in C.  Hence
-this image doesn't include Python.
+Right now we're at ~27MB compressed, ~77MB uncompressed.
 
 Primary minimization targets:
 
@@ -44,3 +55,9 @@ the glibc :arrow_right: nss dependency.
 ### Others
 
 glib2 -> shared-mime-info
+
+Building locally
+----------------
+
+ - `./build-via-docker-and-yum.sh centos 7`
+ - `./build-via-docker-and-yum.sh fedora 24`
