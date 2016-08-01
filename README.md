@@ -61,3 +61,14 @@ Building locally
 
  - `./build-via-docker-and-yum.sh centos 7`
  - `./build-via-docker-and-yum.sh fedora 24`
+
+Longer term plans/ideas:
+------------------------
+
+## Rebasing the current base image
+
+I think the win overall versus the current base image would become
+significantly clearer if it was "rebased" and just became a layer on
+top of this.  Implementing this would entail some slightly nontrivial
+transition code where `micro-yuminst` knows how to replace itself with
+`yum` for example.
