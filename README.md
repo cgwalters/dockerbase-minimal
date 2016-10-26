@@ -33,7 +33,16 @@ Implementation and size
 
 Right now we're at ~27MB compressed, ~77MB uncompressed.
 
-Primary minimization targets:
+Work items
+----------
+
+## Ignore `Requires(post): systemd`
+
+`yum -y install httpd` should *not* pull in systemd by default.  This
+would likely require work in libsolv.
+
+Primary minimization targets
+----------------------------
 
 ## libcurl dependencies
 
